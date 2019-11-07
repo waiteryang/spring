@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Import;
  * <p>
  * Configuration example:
  * </p>
- * 
+ *
  * <pre class="code">
  * &#064;Configuration
  * &#064;MapperScan("org.mybatis.spring.sample.mapper")
@@ -66,6 +66,8 @@ import org.springframework.context.annotation.Import;
  * @since 1.2.0
  * @see MapperScannerRegistrar
  * @see MapperFactoryBean
+ *
+ * @Inport 快速给容器中导入一个组件,id默认是组件的全类名/将MapperScannerRegistrar交给Spring管理
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -160,7 +162,7 @@ public @interface MapperScan {
    * <p>
    * Default is {@code false}.
    * </p>
-   * 
+   *
    * @return set {@code true} to enable lazy initialization
    * @since 2.0.2
    */
