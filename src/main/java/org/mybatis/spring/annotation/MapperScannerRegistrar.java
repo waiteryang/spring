@@ -80,6 +80,10 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 
   void registerBeanDefinitions(AnnotationAttributes annoAttrs, BeanDefinitionRegistry registry, String beanName) {
 
+//    GenericBeanDefinition是标准bean定义的一站式服务。
+//    与任何bean定义一样，它允许指定一个可选的类
+//    构造函数参数值和属性值。此外，由
+//    可以通过“parentName”属性灵活地配置父bean定义。
     BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(MapperScannerConfigurer.class);
     builder.addPropertyValue("processPropertyPlaceHolders", true);
 

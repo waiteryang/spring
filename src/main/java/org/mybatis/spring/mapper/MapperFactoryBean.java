@@ -67,6 +67,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 
   /**
    * {@inheritDoc}
+   * bean实例化之后调用
    */
   @Override
   protected void checkDaoConfig() {

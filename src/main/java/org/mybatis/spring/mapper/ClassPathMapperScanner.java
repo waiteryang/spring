@@ -45,9 +45,13 @@ import java.util.Set;
  *
  * @author Hunter Presnall
  * @author Eduardo Macarron
- * 
+ *
  * @see MapperFactoryBean
  * @since 1.2.0
+ *
+ * ClassPathMapperScanner继承了ClassPathBeanDefinitionScanner，ClassPathBeanDefinitionScanner是spring-context
+ * 类库下的类，它用于扫描类路径下所有类，并将符合过滤条件的类注册到IOC容器中
+ *
  */
 public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 
@@ -201,6 +205,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
       // the mapper interface is the original class of the bean
       // but, the actual class of the bean is MapperFactoryBean
       definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
+      //关键:设置bean为MapperFactoryBean
       definition.setBeanClass(this.mapperFactoryBeanClass);
 
       definition.getPropertyValues().add("addToConfig", this.addToConfig);

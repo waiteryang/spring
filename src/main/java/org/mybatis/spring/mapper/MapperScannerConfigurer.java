@@ -91,6 +91,9 @@ import org.springframework.util.StringUtils;
  * 自动扫描将Mapper接口生成代理注入到Spring
  * 它将查找类路径下的映射器并自动将它们创建成MapperFactoryBean
  * 注册后置操作
+ *
+ * MapperScannerConfigurer 实现了BeanDefinitionRegistryPostProcessor接口，因此通过重写
+ * postProcessBeanDefinitionRegistry方法可以实现自定义注册bean定义的逻辑。
  */
 public class MapperScannerConfigurer
     implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
