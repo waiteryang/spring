@@ -90,6 +90,7 @@ import org.springframework.util.StringUtils;
  *
  * 自动扫描将Mapper接口生成代理注入到Spring
  * 它将查找类路径下的映射器并自动将它们创建成MapperFactoryBean
+ * 注册后置操作
  */
 public class MapperScannerConfigurer
     implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
@@ -357,6 +358,7 @@ public class MapperScannerConfigurer
       scanner.setLazyInitialization(Boolean.valueOf(lazyInitialization));
     }
     scanner.registerFilters();
+    //委派给ClassPathMapperScanner类进行处理
     scanner.scan(
         StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
   }

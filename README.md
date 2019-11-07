@@ -21,3 +21,6 @@ Essentials
 ----------
 
 * [See the docs](http://mybatis.github.io/spring/)
+
+# 源码阅读
+使用@MapperScan指定了mapper接口之后, 触发调用AutoConfiguredMapperScannerRegistrar, 注册MapperScannerConfigurer Bean 定义之后, 委派ClassPathMapperScanner将扫描的mapper接口, 注册成MapperFactoryBean, 最后由MapperFactoryBean生成mapper对象.
