@@ -345,7 +345,7 @@ public class MapperScannerConfigurer
     if (this.processPropertyPlaceHolders) {
       processPropertyPlaceHolders();
     }
-    //配置需要查找的Mapper类的信息
+    //配置需要查找的Mapper类的信息 自定义注册机
     ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
     scanner.setAddToConfig(this.addToConfig);
     scanner.setAnnotationClass(this.annotationClass);
@@ -361,7 +361,7 @@ public class MapperScannerConfigurer
       scanner.setLazyInitialization(Boolean.valueOf(lazyInitialization));
     }
     scanner.registerFilters();
-    //委派给ClassPathMapperScanner类进行处理
+    //委派给ClassPathMapperScanner类进行处理 具体进行扫描,将当前包下的所有类注册到IOC中
     scanner.scan(
         StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
   }

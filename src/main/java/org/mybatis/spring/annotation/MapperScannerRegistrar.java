@@ -66,7 +66,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc} 用于手工注册Bean
    */
   @Override
   public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {

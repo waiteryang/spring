@@ -188,12 +188,17 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
       LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)
           + "' package. Please check your configuration.");
     } else {
+      //将路径下的所有注册到
       processBeanDefinitions(beanDefinitions);
     }
 
     return beanDefinitions;
   }
 
+
+  /**
+   * 修改bean对应的属性
+   */
   private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
     GenericBeanDefinition definition;
     for (BeanDefinitionHolder holder : beanDefinitions) {
@@ -206,6 +211,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
       // but, the actual class of the bean is MapperFactoryBean
       definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
       //关键:设置bean为MapperFactoryBean
+      // 通过后续的processBeanDefinitions()方法，重新修改BeanDefinitionHolder的BeanClass属性值为mapperFactoryBean.class
       definition.setBeanClass(this.mapperFactoryBeanClass);
 
       definition.getPropertyValues().add("addToConfig", this.addToConfig);
