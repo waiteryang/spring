@@ -61,6 +61,10 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
     // intentionally empty
   }
 
+
+  /**
+   * 构造函数
+   */
   public MapperFactoryBean(Class<T> mapperInterface) {
     this.mapperInterface = mapperInterface;
   }

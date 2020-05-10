@@ -78,6 +78,9 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     }
   }
 
+  /**
+   * 手工注册到Bean
+   */
   void registerBeanDefinitions(AnnotationAttributes annoAttrs, BeanDefinitionRegistry registry, String beanName) {
 
 //    GenericBeanDefinition是标准bean定义的一站式服务。
