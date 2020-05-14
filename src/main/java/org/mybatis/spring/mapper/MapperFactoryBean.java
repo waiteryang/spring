@@ -57,13 +57,16 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 
   private boolean addToConfig = true;
 
+  /**
+   * 无参构造函数
+   */
   public MapperFactoryBean() {
     // intentionally empty
   }
 
 
   /**
-   * 构造函数
+   * 有参构造函数
    */
   public MapperFactoryBean(Class<T> mapperInterface) {
     this.mapperInterface = mapperInterface;
@@ -75,8 +78,10 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
    */
   @Override
   protected void checkDaoConfig() {
+    //检查sqlSessionTemplate不为空
     super.checkDaoConfig();
 
+    //检查构造函数传入的mapperInterface不为空
     notNull(this.mapperInterface, "Property 'mapperInterface' is required");
 
     Configuration configuration = getSqlSession().getConfiguration();
@@ -93,7 +98,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc} spring中的工厂Bean生成实例
    */
   @Override
   public T getObject() throws Exception {

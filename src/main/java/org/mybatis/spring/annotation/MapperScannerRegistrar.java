@@ -87,6 +87,9 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 //    与任何bean定义一样，它允许指定一个可选的类
 //    构造函数参数值和属性值。此外，由
 //    可以通过“parentName”属性灵活地配置父bean定义。
+    /**
+     * 创建bean定义构造器 通过构造器来构建我们的bean定义<MapperScannerConfigurer>应用到的设计模式【建造者模式】
+     */
     BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(MapperScannerConfigurer.class);
     builder.addPropertyValue("processPropertyPlaceHolders", true);
 
@@ -95,6 +98,9 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
       builder.addPropertyValue("annotationClass", annotationClass);
     }
 
+    /**
+     * 是否配置了标记接口
+     */
     Class<?> markerInterface = annoAttrs.getClass("markerInterface");
     if (!Class.class.equals(markerInterface)) {
       builder.addPropertyValue("markerInterface", markerInterface);
@@ -119,7 +125,10 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     if (StringUtils.hasText(sqlSessionFactoryRef)) {
       builder.addPropertyValue("sqlSessionFactoryBeanName", annoAttrs.getString("sqlSessionFactoryRef"));
     }
-    //扫描的包
+
+    /**
+     * 解析@MapperScan 扫描的包或者是class对象
+     */
     List<String> basePackages = new ArrayList<>();
     basePackages.addAll(
         Arrays.stream(annoAttrs.getStringArray("value")).filter(StringUtils::hasText).collect(Collectors.toList()));
@@ -130,6 +139,9 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     basePackages.addAll(Arrays.stream(annoAttrs.getClassArray("basePackageClasses")).map(ClassUtils::getPackageName)
         .collect(Collectors.toList()));
 
+    /**
+     * 指定MapperScannerConfigurer是否为懒加载
+     */
     String lazyInitialization = annoAttrs.getString("lazyInitialization");
     if (StringUtils.hasText(lazyInitialization)) {
       builder.addPropertyValue("lazyInitialization", lazyInitialization);
@@ -137,7 +149,9 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 
     builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
 
-    //注册到Bean中
+    /**
+     * 为我们的容器中注册了MapperScannerConfigurer的接口
+     */
     registry.registerBeanDefinition(beanName, builder.getBeanDefinition());
 
   }
