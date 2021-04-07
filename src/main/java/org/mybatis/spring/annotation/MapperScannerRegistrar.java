@@ -49,6 +49,7 @@ import org.springframework.util.StringUtils;
  * @see ClassPathMapperScanner
  * @since 1.2.0
  *
+ * ResourceLoaderAware 获取外部资源加载器 Since 2.0.2, this method not used never.
  * ImportBeanDefinitionRegistrar ,该接口主要用来注册beanDefinition
  *
  */
